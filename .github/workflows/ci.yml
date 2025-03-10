@@ -40,8 +40,12 @@ jobs:
         run: |
           pytest tests/unit --maxfail=1 --disable-warnings -v
           coverage run -m pytest tests/unit && coverage report -m
-      - name: Run integration tests
 
+      - name: Run BDD tests
+        run: |
+          behave tests/features --no-capture
+
+      - name: Run integration tests
         run: |
           pytest --maxfail=1 --disable-warnings -v
           coverage run -m pytest && coverage report -m
