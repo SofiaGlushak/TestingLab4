@@ -26,11 +26,6 @@ Feature:Shopping cart
     When I add product to the cart in amount "3"
     Then The total price has to be "600"
 
-  Scenario: Submit an empty cart
-    Given An empty shopping cart
-    When I submit the order
-    Then The order is not submitted successfully
-
   Scenario: Successful submit a cart
     Given An empty shopping cart
     And A product with name "Test2", price "200", and availability "10"

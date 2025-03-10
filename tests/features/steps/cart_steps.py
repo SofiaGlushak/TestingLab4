@@ -33,6 +33,10 @@ def add_successful(context):
 def add_failed(context):
     assert context.add_successfully == False
 
+@then("The cart has to be empty")
+def cart_empty(context):
+    assert not context.cart.products, "Cart is not empty"
+
 @then('The total price has to be "{total_price}"')
 def check_cart_total(context, total_price):
     assert context.cart.calculate_total() == float(total_price)
