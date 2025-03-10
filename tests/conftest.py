@@ -1,11 +1,13 @@
 import pytest
 import boto3
-from services.config import *
-from services.db import get_dynamodb_resource
 import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from services.config import *
+from services.db import get_dynamodb_resource
+
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_localstack_resources():
