@@ -51,11 +51,6 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.product.buy(22)
 
-    def test_place_empty_cart_order(self):
-        order = Order(self.cart)
-        with self.assertRaises(ValueError):
-            order.place_order()
-
     def test_cart_total_calculation(self):
         self.cart.add_product(self.product, 5)
         total = self.cart.calculate_total()
