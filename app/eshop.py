@@ -1,5 +1,8 @@
 import uuid
 from typing import Dict
+from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
+from services import ShippingService
 
 
 class Product:
@@ -12,7 +15,7 @@ class Product:
             raise TypeError("Invalid data types for product attributes")
         if price <= 0:
             raise ValueError("Price must be more than zero")
-        if available_amount < 0 :
+        if available_amount < 0:
             raise ValueError("Availability must be non-negative")
         if len(name) < 3:
             raise ValueError("The name length must be greater than 0")
@@ -57,7 +60,8 @@ class ShoppingCart:
 
     def add_product(self, product: Product, amount: int):
         if not product.is_available(amount):
-            raise ValueError(f"Product {product} has only {product.available_amount} items")
+            raise ValueError
+        (f"Product {product} has only {product.available_amount} items")
         self.products[product] = amount
 
     def remove_product(self, product):
@@ -74,10 +78,6 @@ class ShoppingCart:
         return product_ids
 
 
-from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
-from services import ShippingService
-
 @dataclass
 class Order:
     cart: ShoppingCart
@@ -89,7 +89,11 @@ class Order:
             due_date = datetime.now(timezone.utc) + timedelta(seconds=3)
         product_ids = self.cart.submit_cart_order()
         print(due_date)
-        return self.shipping_service.create_shipping(shipping_type, product_ids, self.order_id, due_date)
+        return self.shipping_service.create_shipping(shipping_type,
+                                                     product_ids,
+                                                     self.order_id,
+                                                     due_date)
+
 
 @dataclass()
 class Shipment:
