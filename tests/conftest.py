@@ -14,7 +14,9 @@ def setup_localstack_resources():
     dynamo_client = boto3.client(
         "dynamodb",
         endpoint_url=AWS_ENDPOINT_URL,
-        region_name=AWS_REGION
+        region_name=AWS_REGION,
+        aws_access_key_id="test",
+        aws_secret_access_key="test"
     )
     existing_tables = dynamo_client.list_tables()["TableNames"]
     if SHIPPING_TABLE_NAME not in existing_tables:
