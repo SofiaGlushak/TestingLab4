@@ -12,6 +12,8 @@ class TestCalculator(unittest.TestCase):
     def tearDown(self):
         self.cart.remove_product(self.product)
 
+
+
     def test_mock_add_product(self):
         self.product.is_available = MagicMock()
         self.cart.add_product(self.product, 12345)
